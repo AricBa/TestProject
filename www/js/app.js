@@ -18,18 +18,6 @@ angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.f
             $rootScope.format = 'yyyy-MM-dd h:mm:ss a';
             // window.plugins.jPushPlugin.init();
 
-            //$rootScope.options = {
-            //    quality: 50,
-            //    destinationType: Camera.DestinationType.DATA_URL,
-            //    sourceType: Camera.PictureSourceType.CAMERA,
-            //    allowEdit: true,
-            //    encodingType: Camera.EncodingType.JPEG,
-            //    targetWidth: 100,
-            //    targetHeight: 100,
-            //    popoverOptions: CameraPopoverOptions,
-            //    saveToPhotoAlbum: false
-            //};
-
         });
         $ionicPlatform.registerBackButtonAction(function (event) {
             if($state.current.name === 'tabs.home'){
@@ -50,6 +38,18 @@ angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.f
             navigator.app.backHistory();
         }
     }, 100);
+
+        var onDeviceReady   = function(){
+          cordova.getAppVersion.getVersionNumber().then(function (version) {
+              $rootScope.version = version;
+          });
+            window.plugins.jPushPlugin.init();
+            window.plugins.jPushPlugin.setDebugMode(true);
+            setTimeout(function() {
+                navigator.splashscreen.hide();
+            }, 1000);
+        };
+        window.document.addEventListener("deviceready", onDeviceReady, false);
 
         var onOpenNotification = function(event){
             try{
@@ -131,10 +131,11 @@ angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.f
                 }
             })
             .state('tabs.settings', {
-                url: '/settings',
+                url: '/setting',
                 views: {
-                    'settings': {
-                        templateUrl: 'templates/settings.html',
+                    'setting': {
+                        templateUrl: 'templates/setting.html',
+                        controller:'setCtrl'
                     }
                 }
             })

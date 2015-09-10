@@ -5,12 +5,6 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
 .controller('homeCtrl',function($scope, peopleService,FIREBASE_URL,$ionicSideMenuDelegate,
                                 $cordovaCamera,$ionicLoading,$cordovaNetwork,$rootScope,$timeout,searchHistory,$ionicActionSheet){
 
-        //var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
-        //telephoneNumber.get(function(result) {
-        //    alert("result = " + result);
-        //}, function() {
-        //    alert.log("error");
-        //});
 
         $rootScope.$on('$cordovaNetwork:offline', function(){
             $ionicLoading.show({template: 'no connect network'});
@@ -46,7 +40,7 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
         //    saveToPhotoAlbum: false
         //};
         function takePhoto(){
-            $cordovaCamera.getPicture({ quality: 100, targetWidth: 720, targetHeight: 1280,allowEdit: true, destinationType: Camera.DestinationType.FILE_URI,sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM }).then(function (imageData) {
+            $cordovaCamera.getPicture({ quality: 100, targetWidth: 30, targetHeight: 30,allowEdit: true, destinationType: Camera.DestinationType.FILE_URI,sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM }).then(function (imageData) {
                 var image = document.getElementById('myImage');
 
                 image.src =  imageData;
@@ -55,7 +49,7 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
             });
         }
         function makePhoto(){
-            $cordovaCamera.getPicture({ quality: 100, targetWidth: 720, targetHeight: 1280,allowEdit: true, destinationType: Camera.DestinationType.FILE_URI
+            $cordovaCamera.getPicture({ quality: 100, targetWidth: 30, targetHeight: 30,allowEdit: true, destinationType: Camera.DestinationType.FILE_URI
             }).then(function (imageData) {
                 var image = document.getElementById('myImage');
 
@@ -337,6 +331,9 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
         //
         //});
     })
+.controller('setCtrl',function($rootScope,$scope){
+        $scope.versionData = $rootScope.version;
+})
 .directive('goEdit',function(){
        return{
            restrict: 'E',

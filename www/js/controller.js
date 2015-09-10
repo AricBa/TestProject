@@ -5,12 +5,6 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
 .controller('homeCtrl',function($scope, peopleService,FIREBASE_URL,$ionicSideMenuDelegate,
                                 $cordovaCamera,$ionicLoading,$cordovaNetwork,$rootScope,$timeout,searchHistory,$ionicActionSheet){
 
-        //var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
-        //telephoneNumber.get(function(result) {
-        //    alert("result = " + result);
-        //}, function() {
-        //    alert.log("error");
-        //});
 
         $rootScope.$on('$cordovaNetwork:offline', function(){
             $ionicLoading.show({template: 'no connect network'});
@@ -289,7 +283,7 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
         //    });
         //};
     })
-.controller('aboutCtrl',function($cordovaInAppBrowser,$scope,$rootScope){
+.controller('aboutCtrl',function($cordovaInAppBrowser,$scope){
         $scope.docs = 'http://www.baidu.com';
         $scope.click = function(){
                 $cordovaInAppBrowser.open(encodeURI($scope.docs),'_blank')
@@ -337,6 +331,8 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
         //
         //});
     })
+.controller('setCtrl',function(){
+})
 .directive('goEdit',function(){
        return{
            restrict: 'E',
