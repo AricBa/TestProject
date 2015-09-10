@@ -2,7 +2,8 @@
  * Created by C5226508 on 7/31/2015.
  */
 angular.module('myApp.controllers',['firebase','ionic-datepicker','internationalPhoneNumber'])
-.controller('homeCtrl',function($scope, peopleService,FIREBASE_URL,$ionicSideMenuDelegate,$cordovaCamera,$ionicLoading,$cordovaNetwork,$rootScope,$timeout,searchHistory){
+.controller('homeCtrl',function($scope, peopleService,FIREBASE_URL,$ionicSideMenuDelegate,
+                                $cordovaCamera,$ionicLoading,$cordovaNetwork,$rootScope,$timeout,searchHistory,$ionicActionSheet){
 
         //var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
         //telephoneNumber.get(function(result) {
@@ -33,21 +34,50 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
         };
 
         //document.location.href = 'tel:18516278041';
-        var options = {
-            quality: 100,
-            allowEdit: true,
-            targetWidth: 100,
-            targetHeight: 100,
-            saveToPhotoAlbum: false
-        };
-        $scope.getPhoto = function() {
-            $cordovaCamera.getPicture(options).then(function (imageData) {
+        //var options = {
+        //    quality: 100,
+        //    destinationType: navigator.camera.DestinationType.FILE_URI,
+        //    //sourceType: Camera.PictureSourceType.CAMERA,
+        //    allowEdit: true,
+        //    targetWidth: 320,
+        //    targetHeight: 320,
+        //    //popoverOptions: CameraPopoverOptions,
+        //    sourceType: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM,
+        //    saveToPhotoAlbum: false
+        //};
+        function takePhoto(){
+            $cordovaCamera.getPicture({ quality: 100, targetWidth: 720, targetHeight: 1280,allowEdit: true, destinationType: Camera.DestinationType.FILE_URI,sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM }).then(function (imageData) {
                 var image = document.getElementById('myImage');
-                console.log(imageData);
 
                 image.src =  imageData;
             }, function (err) {
                  //error
+            });
+        }
+        function makePhoto(){
+            $cordovaCamera.getPicture({ quality: 100, targetWidth: 720, targetHeight: 1280,allowEdit: true, destinationType: Camera.DestinationType.FILE_URI
+            }).then(function (imageData) {
+                var image = document.getElementById('myImage');
+
+                image.src =  imageData;
+            }, function (err) {
+                //error
+            });
+        }
+        $scope.showActionsheet = function(){
+            $ionicActionSheet.show({
+                titleText : 'change picture',
+                cancelText: 'cancel',
+                buttons   : [{text:'takephoto'},{text:'select from album'}],
+                //cancel    : function(){},
+                buttonClicked : function(index){
+                    switch(index){
+                        case  1: takePhoto();break;
+                        case  0: makePhoto();break;
+                        //default: makePhoto();break;
+                    }
+                    return true;
+                }
             });
         };
         //$scope.getPhoto = function()
@@ -221,14 +251,13 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
         $scope.users = peopleService.all;
         $scope.user = {};
 
-        //$scope.getPhoneNumber = function(){
-        //    navigator.contacts.pickContact(function(contact){
-        //        $scope.user.number = ((contact.phoneNumbers)[0]).value ;
-        //        alert($scope.user.number);
-        //    },function(err){
-        //        alert('Error: ' + err);
-        //    });
-        //};
+        $scope.getPhoneNumber = function(){
+            navigator.contacts.pickContact(function(contact){
+                $scope.user.phone = ((contact.phoneNumbers)[0]).value ;
+            },function(err){
+                alert('Error: ' + err);
+            });
+        };
 
         $scope.submitUser = function(){
             (peopleService.create($scope.user)).then(function(key){

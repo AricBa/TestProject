@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.filters','firebase','ionic-datepicker','LocalStorageModule','ngCordova.plugins.camera','ngCordova'])
 
-    .run(function ($ionicPlatform, $rootScope,$ionicPopup,$state,$ionicLoading,$timeout,localStorageService) {
+    .run(function ($ionicPlatform, $rootScope,$ionicPopup,$state,$cordovaCamera) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -17,6 +17,18 @@ angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.f
             }
             $rootScope.format = 'yyyy-MM-dd h:mm:ss a';
             // window.plugins.jPushPlugin.init();
+
+            //$rootScope.options = {
+            //    quality: 50,
+            //    destinationType: Camera.DestinationType.DATA_URL,
+            //    sourceType: Camera.PictureSourceType.CAMERA,
+            //    allowEdit: true,
+            //    encodingType: Camera.EncodingType.JPEG,
+            //    targetWidth: 100,
+            //    targetHeight: 100,
+            //    popoverOptions: CameraPopoverOptions,
+            //    saveToPhotoAlbum: false
+            //};
 
         });
         $ionicPlatform.registerBackButtonAction(function (event) {
