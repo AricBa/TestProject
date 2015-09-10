@@ -1,0 +1,61 @@
+<ion-view>
+    <ion-nav-title>Add Person</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button" ng-click="submitUser()">
+            Save!
+        </button>
+    </ion-nav-buttons>
+<ion-footer-bar>
+    <div class="jumbotron">
+        Current time is: <span my-current-time="format"></span>
+    </div>
+</ion-footer-bar>
+    <ion-content>
+        <!--<div class="list list-inset">-->
+            <!--<label class="item item-input" >-->
+                <!--<input type="text" placeholder="Picture" ng-model="user.picture.thumbnail">-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--<div class="list list-inset">-->
+            <!--<label class="item item-input" >-->
+                <!--<input type="text" placeholder="Email" ng-model="user.email">-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--<div class="list list-inset">-->
+            <!--<label class="item item-input" >-->
+                <!--<input type="text" placeholder="FirstName" ng-model="user.name.first">-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--<div class="list list-inset">-->
+            <!--<label class="item item-input" >-->
+                <!--<input type="text" placeholder="Last" ng-model="user.name.last">-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--<div class="list list-inset">-->
+            <!--<label class="item item-input" >-->
+                <!--<input type="text" placeholder="Gender" ng-model="user.gender">-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--<div class="list list-inset">-->
+            <!--<label class="item item-input" >-->
+                <!--<input type="text" placeholder="City" ng-model="user.location.city">-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--<div class="list list-inset">-->
+            <!--<label class="item item-input" >-->
+                <!--<input type="text" placeholder="State" ng-model="user.location.state">-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--<div class="list list-inset">-->
+            <!--<label class="item item-input" >-->
+                <!--<input type="text" placeholder="Street" ng-model="user.location.street">-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--<div class="list list-inset">-->
+            <!--<label class="item item-input" >-->
+                <!--<input type="text" placeholder="Zip" ng-model="user.location.zip">-->
+            <!--</label>-->
+        <!--</div>-->
+        <form name="phoneOnlyForm">  <input type="text" international-phone-number ng-model="user.phone" name = "phone"   required></form>
+    </ion-content>
+</ion-view>

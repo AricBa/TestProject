@@ -1,0 +1,70 @@
+<ion-view >
+    <ion-nav-bar class="bar-positive nav-title-slide-ios7" align-title="left">
+        <ion-nav-buttons side="left">&nbsp;&nbsp;&nbsp;
+            <button class=" button-icon button-clear nav-left-button ion-navicon "
+                    ng-click="openMenu()"></button>
+        </ion-nav-buttons>
+        <ion-nav-title>
+            People
+        </ion-nav-title>
+        <ion-nav-buttons side="right">
+            <button class="button" ng-click="data.showReorder = !data.showReorder" >
+                Reorder
+            </button>
+        </ion-nav-buttons>
+        <ion-footer-bar>
+            <div class="jumbotron">
+                Current time is: <span my-current-time="format"></span>
+            </div>
+        </ion-footer-bar>
+    </ion-nav-bar>
+    <ion-content>
+        <div class="list list-inset">
+            <div class="item item-input" id="search">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Search" ng-model = "searchString" >
+                <button class="button button-clear"  ng-show="searchString.length" ng-click="searchString = null">
+                Cancel
+                </button>
+            </div>
+        </div>
+
+        <ion-list show-reorder="data.showReorder">
+            <ion-item class ="item-avatar" ng-repeat="user in users | searchFor: searchString" ui-sref="tabs.detail({key:user.$id})">
+                <img ng-src="{{user.picture.thumbnail}}">
+                <h2 class="energized">{{user.name.first}}</h2>
+                <p>{{user.email}}</p>
+                <ion-reorder-button class="ion-navicon"
+                                    on-reorder="moveItem(user, $fromIndex, $toIndex)">
+                </ion-reorder-button>
+                <ion-option-button class="button-assertive"
+                                   ng-click="delete(user)">
+                    Delete
+                </ion-option-button>
+            </ion-item>
+            <ion-item>
+                <a  ui-sref="tabs.addPerson"><input type="button" value="Add Person" style="margin-left:145px"/></a>
+            </ion-item>
+            <!--<ion-item>-->
+                <!--<input type="button" value="TakePhoto" style="margin-left:145px" ng-click="getPhoto()"/>-->
+            <!--</ion-item>-->
+            <!--<ion-item>-->
+                <!--<ionic-datepicker input-obj="datepickerObject">-->
+                    <!--<button class="button button-block button-positive"> {{date | date:'dd - MMMM - yyyy'}}</button>-->
+                <!--</ionic-datepicker>-->
+            <!--</ion-item>-->
+            <ion-item>
+                <form>
+                    <div class="item item-input"> <input id= "id" type="text" name="some" placeholder="alias"/></div>
+                    <input type="submit" value="Submit" ng-click="submit()"/>
+                </form>
+            </ion-item>
+            <!--<ion-item >-->
+                <!--<a href="tel:18516278041">18516278041</a>-->
+            <!--</ion-item>-->
+            <ion-item>
+                <div ><img id="myImage" src=""/><br><input type="submit" value="Submit" ng-click="getPhoto()"/></div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

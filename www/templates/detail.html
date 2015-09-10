@@ -1,0 +1,67 @@
+<ion-view >
+    <ion-nav-title>
+        {{user.name.first}}
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button" ng-click="data.showEdit = !data.showEdit">
+            Edit
+        </button>
+    </ion-nav-buttons>
+    <ion-footer-bar>
+        <div class="jumbotron">
+            Current time is: <span my-current-time="format"></span>
+        </div>
+    </ion-footer-bar>
+
+    <!--<ion-content>-->
+        <!--<ion-list>-->
+            <!--&lt;!&ndash;<ion-item ng-repeat="">&ndash;&gt;-->
+
+            <!--&lt;!&ndash;</ion-item>&ndash;&gt;-->
+        <!--</ion-list>-->
+    <!--</ion-content>-->
+<!--</ion-view>-->
+    <ion-content >
+        <ion-list>
+            <ion-item class="item-avatar">
+                <img ng-src="{{user.picture.thumbnail}}">
+                <h3>{{user.name.last}} {{user.name.first}}</h3>
+                <button class="button-icon button-clear right-button ion-android-more-vertical" ng-click="popover.show($event)" ng-controller="popoverCtrl">
+                </button>
+            </ion-item>
+            <ion-item></ion-item>
+            <ion-item >
+                <h3>gender:</h3>
+                {{user.gender}}<go-edit  key="user.$id" index = 0 ng-show="data.showEdit"></go-edit>
+            </ion-item>
+            <ion-item></ion-item>
+            <ion-item>
+                <h3>location:</h3>
+                city： {{user.location.city}}
+                    <go-edit  key="user.$id" index = 1 ng-show="data.showEdit"></go-edit><br>
+                state: {{user.location.state}}
+                    <go-edit  key="user.$id" index = 1 ng-show="data.showEdit"></go-edit><br>
+                street: {{user.location.street}}
+                    <go-edit  key="user.$id" index = 1 ng-show="data.showEdit"></go-edit><br>
+                zip: {{user.location.zip}}
+                    <go-edit  key="user.$id" index = 1 ng-show="data.showEdit"></go-edit>
+            </ion-item>
+            <ion-item></ion-item>
+            <ion-item>
+                <h3>phone:</h3>
+                phone: {{user.phone}}
+                    <go-edit  key="user.$id" index = 2 ng-show="data.showEdit"></go-edit>
+            </ion-item>
+            <ion-item >
+                <button class="button" ng-click="save()">
+                    Save!
+                </button>
+            </ion-item>
+            <!--<ion-item>-->
+                <!--<button class="button-icon button-full assertive" ng-click="deletePerson()">-->
+                    <!--Delete User-->
+                <!--</button>-->
+            <!--</ion-item>-->
+        </ion-list>
+    </ion-content>
+</ion-view>

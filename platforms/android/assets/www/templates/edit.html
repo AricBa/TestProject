@@ -1,0 +1,52 @@
+<ion-view>
+<ion-nav-title>
+   Change {{user.name.first}} Information
+</ion-nav-title>
+<ion-footer-bar>
+    <div class="jumbotron">
+        Current time is: <span my-current-time="format"></span>
+    </div>
+</ion-footer-bar>
+<ion-content>
+    <div class="list list-inset" ng-show="index === '0'">
+        <p align="center" >Change {{user.name.first}} Gender </p>
+        <label class="item item-input" >
+            <input type="text" id = "gender" placeholder="Gender" ng-model="user.gender">
+            <!--<input type="text" id = "gender" placeholder="Gender" value={{user.gender}}>-->
+        </label>
+    </div>
+    <div class="list list-inset" ng-show="index === '1'">
+        <p align="center">Change {{user.name.first}} Location </p>
+        <p>City :</p>
+        <label class="item item-input" >
+            <input type="text" id = "city" placeholder="City" value ={{user.location.city}}>
+        </label>
+    </div>
+    <div class="list list-inset" ng-show="index === '1'">
+        <p>State :</p>
+        <label class="item item-input" >
+            <input type="text" id = "state" placeholder="State" value ={{user.location.state}}>
+        </label>
+    </div>
+    <div class="list list-inset" ng-show="index === '1'">
+        <p>Street :</p>
+        <label class="item item-input" >
+            <input type="text" id = "street" placeholder="Street" value ={{user.location.street}}>
+        </label>
+    </div>
+    <div class="list list-inset" ng-show="index === '1'">
+        <p>Zip :</p>
+        <label class="item item-input" >
+            <input type="text" id = "zip" placeholder="Zip" value ={{user.location.zip}}>
+        </label>
+    </div>
+    <div class="list list-inset" ng-show="index === '2'">
+        <p align="center">Change {{user.name.first}} Phone </p>
+        <label class="item item-input" >
+            <input type="text" id = "phone" placeholder="Phone" value ={{user.phone}}>
+        </label>
+    </div>
+</ion-content>
+</ion-view>
+
+
