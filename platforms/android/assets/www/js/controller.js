@@ -283,7 +283,7 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
         //    });
         //};
     })
-.controller('aboutCtrl',function($cordovaInAppBrowser,$scope,$rootScope){
+.controller('aboutCtrl',function($cordovaInAppBrowser,$scope){
         $scope.docs = 'http://www.baidu.com';
         $scope.click = function(){
                 $cordovaInAppBrowser.open(encodeURI($scope.docs),'_blank')
@@ -331,8 +331,7 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
         //
         //});
     })
-.controller('setCtrl',function($rootScope,$scope){
-        $scope.versionData = $rootScope.version;
+.controller('setCtrl',function(){
 })
 .directive('goEdit',function(){
        return{
