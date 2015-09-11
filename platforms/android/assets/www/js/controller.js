@@ -3,24 +3,12 @@
  */
 angular.module('myApp.controllers',['firebase','ionic-datepicker','internationalPhoneNumber'])
 .controller('homeCtrl',function($scope, peopleService,FIREBASE_URL,$ionicSideMenuDelegate,
-                                $cordovaCamera,$ionicLoading,$cordovaNetwork,$rootScope,$timeout,searchHistory,$ionicActionSheet){
+                                $cordovaCamera,$ionicLoading,$cordovaNetwork,$rootScope,$timeout,
+                                searchHistory,$ionicActionSheet,customFunction){
 
+        $scope.$on('$cordovaNetwork:offline', function(){customFunction.myNotice('no network connect');});
 
-        $rootScope.$on('$cordovaNetwork:offline', function(){
-            $ionicLoading.show({template: 'no connect network'});
-            $timeout(function(){
-                $ionicLoading.hide();
-            },500);
-            return false;
-        });
-
-        $rootScope.$on('$cordovaNetwork:online', function(){
-            $ionicLoading.show({template: 'network connected'});
-            $timeout(function(){
-                $ionicLoading.hide();
-            },500);
-            return false;
-        });
+        $rootScope.$on('$cordovaNetwork:online', function(){customFunction.myNotice('network connectted');});
 
         $scope.submit = function(){
             window.plugins.jPushPlugin.setAlias(document.getElementById("id").value);
@@ -183,7 +171,8 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
             $state.go('tabs.detail',{"key":id});
         };
     })
-.controller('detailCtrl',function($scope,peopleService,$ionicActionSheet,searchKey,$state,jsonFactory,searchHistory,$rootScope,$ionicLoading,$timeout){
+.controller('detailCtrl',function($scope,peopleService,$ionicActionSheet,searchKey,
+                                  $state,jsonFactory,searchHistory,$rootScope,customFunction){
 
         //var onGetRegistradionID = function(data) {
         //    try{
@@ -211,18 +200,20 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
 
         $scope.save = function(){
             if(!(navigator && navigator.connection && navigator.connection.type!=Connection.NONE)){
-                $ionicLoading.show({template: 'no network connect'});
-                $timeout(function(){
-                    $ionicLoading.hide();
-                },500);
-                return false;
+                customFunction.myNotice('no network connect');
+                //$ionicLoading.show({template: 'no network connect'});
+                //$timeout(function(){
+                //    $ionicLoading.hide();
+                //},500);
+                //return false;
             }
             peopleService.update($scope.user).then(function(){
-                $ionicLoading.show({template: 'save success'});
-                $timeout(function(){
-                    $ionicLoading.hide();
-                },500);
-                return false;
+                customFunction.myNotice('save sucess');
+                //$ionicLoading.show({template: 'save success'});
+                //$timeout(function(){
+                //    $ionicLoading.hide();
+                //},500);
+                //return false;
             });
         };
 

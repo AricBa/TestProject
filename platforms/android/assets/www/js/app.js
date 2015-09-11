@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.filters','firebase','ionic-datepicker','LocalStorageModule','ngCordova.plugins.camera','ngCordova'])
 
-    .run(function ($ionicPlatform, $rootScope,$ionicPopup,$state,$cordovaCamera) {
+    .run(function ($ionicPlatform, $rootScope,$ionicPopup,$state,customFunction) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)

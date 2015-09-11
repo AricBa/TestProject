@@ -153,6 +153,21 @@ angular.module('myApp.services',['firebase'])
 
     };
     return searchHistory;
+})
+.factory('customFunction',function($ionicLoading,$timeout){
+    var customFunct;
+    customFunct = {
+        myNotice : function(msg){
+            $ionicLoading.show({template: msg});
+            $timeout(function(){
+                $ionicLoading.hide();
+            },1000);
+            return false;
+        }
+    };
+
+    return customFunct;
+
 });
 //.factory('Camera',['$q',function($q){
 //        return {
