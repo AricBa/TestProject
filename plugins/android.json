@@ -9,7 +9,35 @@
                 "parents": {
                     "/*": [
                         {
+                            "xml": "<feature name=\"JPushPlugin\"><param name=\"android-package\" value=\"cn.jpush.phonegap.JPushPlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Contacts\"><param name=\"android-package\" value=\"org.apache.cordova.contacts.ContactManager\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"StatusBar\"><param name=\"android-package\" value=\"org.apache.cordova.statusbar.StatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Camera\"><param name=\"android-package\" value=\"org.apache.cordova.camera.CameraLauncher\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
                             "count": 1
                         },
                         {
@@ -21,31 +49,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"JPushPlugin\"><param name=\"android-package\" value=\"cn.jpush.phonegap.JPushPlugin\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Contacts\"><param name=\"android-package\" value=\"org.apache.cordova.contacts.ContactManager\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Camera\"><param name=\"android-package\" value=\"org.apache.cordova.camera.CameraLauncher\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"AppVersion\"><param name=\"android-package\" value=\"uk.co.whiteoctober.cordova.AppVersion\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"StatusBar\"><param name=\"android-package\" value=\"org.apache.cordova.statusbar.StatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -53,28 +57,6 @@
             },
             "AndroidManifest.xml": {
                 "parents": {
-                    "/*": [
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.READ_CONTACTS\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-                            "count": 1
-                        }
-                    ],
                     "/manifest": [
                         {
                             "xml": "<uses-permission android:name=\"com.nraboy.testproject.permission.JPUSH_MESSAGE\" />",
@@ -162,13 +144,56 @@
                             "xml": "<meta-data android:name=\"JPUSH_APPKEY\" android:value=\"77458627944817d38036f4d2\" />",
                             "count": 1
                         }
+                    ],
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.READ_CONTACTS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+                            "count": 2
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+                            "count": 1
+                        }
                     ]
                 }
             }
         }
     },
     "installed_plugins": {
+        "cn.jpush.phonegap.JPushPlugin": {
+            "PACKAGE_NAME": "com.nraboy.testproject"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "com.nraboy.testproject"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.nraboy.testproject"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.nraboy.testproject"
+        },
         "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.nraboy.testproject"
+        },
+        "nl.x-services.plugins.socialsharing": {
+            "PACKAGE_NAME": "com.nraboy.testproject"
+        },
+        "org.apache.cordova.camera": {
+            "PACKAGE_NAME": "com.nraboy.testproject"
+        },
+        "org.apache.cordova.device": {
             "PACKAGE_NAME": "com.nraboy.testproject"
         },
         "org.apache.cordova.inappbrowser": {
@@ -177,25 +202,7 @@
         "org.apache.cordova.network-information": {
             "PACKAGE_NAME": "com.nraboy.testproject"
         },
-        "cn.jpush.phonegap.JPushPlugin": {
-            "PACKAGE_NAME": "com.nraboy.testproject"
-        },
-        "org.apache.cordova.device": {
-            "PACKAGE_NAME": "com.nraboy.testproject"
-        },
-        "cordova-plugin-contacts": {
-            "PACKAGE_NAME": "com.nraboy.testproject"
-        },
-        "org.apache.cordova.camera": {
-            "PACKAGE_NAME": "com.nraboy.testproject"
-        },
         "uk.co.whiteoctober.cordova.appversion": {
-            "PACKAGE_NAME": "com.nraboy.testproject"
-        },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.nraboy.testproject"
-        },
-        "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.nraboy.testproject"
         }
     },
