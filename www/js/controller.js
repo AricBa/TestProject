@@ -40,7 +40,7 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
         //    saveToPhotoAlbum: false
         //};
         function takePhoto(){
-            $cordovaCamera.getPicture({ quality: 100, targetWidth: 30, targetHeight: 30,allowEdit: true, destinationType: Camera.DestinationType.FILE_URI,sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM }).then(function (imageData) {
+            $cordovaCamera.getPicture({ quality: 100, targetWidth: 300, targetHeight: 300,allowEdit: true, destinationType: Camera.DestinationType.FILE_URI,sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM }).then(function (imageData) {
                 var image = document.getElementById('myImage');
 
                 image.src =  imageData;
@@ -49,7 +49,7 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
             });
         }
         function makePhoto(){
-            $cordovaCamera.getPicture({ quality: 100, targetWidth: 30, targetHeight: 30,allowEdit: true, destinationType: Camera.DestinationType.FILE_URI
+            $cordovaCamera.getPicture({ quality: 100, targetWidth: 300, targetHeight: 300,allowEdit: true, destinationType: Camera.DestinationType.FILE_URI
             }).then(function (imageData) {
                 var image = document.getElementById('myImage');
 
