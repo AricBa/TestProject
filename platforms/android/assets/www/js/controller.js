@@ -237,11 +237,13 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
         $scope.user = {};
 
         $scope.getPhoneNumber = function(){
-            navigator.contacts.pickContact(function(contact){
-                $scope.user.phone = ((contact.phoneNumbers)[0]).value ;
-            },function(err){
-                alert('Error: ' + err);
-            });
+            if( $scope.user.phone === ''){
+                navigator.contacts.pickContact(function(contact){
+                    $scope.user.phone = ((contact.phoneNumbers)[0]).value ;
+                },function(err){
+                    alert('Error: ' + err);
+                });
+            }
         };
 
         $scope.submitUser = function(){

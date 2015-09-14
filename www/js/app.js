@@ -75,6 +75,16 @@ angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.f
     })
     .config(function ($urlRouterProvider, $stateProvider) {
         $stateProvider
+            .state('login',{
+                url:"/login",
+                templateUrl: "templates/login.html",
+                controller : 'loginCtrl'
+            })
+            .state('register',{
+                url:"/register",
+                templateUrl: "templates/register.html",
+                controller : 'registerCtrl'
+            })
             .state('tabs', {
                 url: '/tabs',
                 templateUrl: 'templates/tabs.html',

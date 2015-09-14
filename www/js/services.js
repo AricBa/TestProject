@@ -198,7 +198,49 @@ angular.module('myApp.services',['firebase'])
 
     return customFunct;
 
-});
+})
+.factory('Auth',function(FIREBASE_URL,$firebaseAuth,$q,$firebaseObject){
+        var ref = new Firebase(FIREBASE_URL);
+        var authObj = $firebaseAuth(ref);
+
+        var Auth = {
+            register: function(user){
+                return authObj.$createUser(user).then(function(userData){
+                    console.log("Successfully created user account with uid:", userData.uid);
+                }).catch(function(error){
+                    console.log("Error creating user:", error);
+                });
+            },
+            createProfile: function(user){
+                return ref.child("users").child(user.uid).set({
+                    username: user.username,
+                    useremail: user.email
+                });
+            },
+            login: function(user){
+                return authObj.$authWithPassword({
+                    email    : user.email,
+                    password : user.password
+                }).then(function(authData) {
+                    console.log("Authenticated successfully with payload:", authData);
+                }).catch(function(error){
+                    console.log("Login Failed!", error);
+                });
+            },
+            logout: function(){
+                return authObj.$unauth();
+            },
+            resolveUser: function(){
+
+            },
+            signedIn: function(){
+                return !!Auth.user.provider ;
+            },
+            user:{}
+        };
+
+        return Auth;
+    });
 //.factory('Camera',['$q',function($q){
 //        return {
 //            getPicture: function(options){
