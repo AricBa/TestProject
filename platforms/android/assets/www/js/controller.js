@@ -323,9 +323,8 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
         //});
     })
 .controller('setCtrl',function($scope,customFunction){
-        $scope.message = 'test';
         $scope.send = function(){
-            customFunction.sendGossip('test');
+            customFunction.sendGossip();
         };
 })
 .directive('goEdit',function(){

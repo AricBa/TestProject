@@ -164,7 +164,7 @@ angular.module('myApp.services',['firebase'])
             },timeout || 1000);
             return false;
         },
-        sendGossip : function(gossip){
+        sendGossip : function(){
             if(!(navigator && navigator.connection && navigator.connection.type!=Connection.NONE)){
                 return this.myNotice('no network connect...');
             }
@@ -178,7 +178,7 @@ angular.module('myApp.services',['firebase'])
                     Wechat.share({
                         message: {
                             description: index === 0 ? 'anonymous information?click to get detail...' : '',
-                            title: gossip,
+                            title: 'test',
                             thumb:'',
                             media: {
                                 type: 7,
