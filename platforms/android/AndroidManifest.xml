@@ -60,6 +60,20 @@
         <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
         <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default" />
         <meta-data android:name="JPUSH_APPKEY" android:value="77458627944817d38036f4d2" />
+        <activity android:exported="true" android:label="@string/launcher_name" android:name=".wxapi.WXEntryActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="wx2ba9fd24763f88fc" />
+            </intent-filter>
+        </activity>
+        <activity android:exported="true" android:label="@string/launcher_name" android:launchMode="singleTop" android:name=".wxapi.WXPayEntryActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="wx2ba9fd24763f88fc" />
+            </intent-filter>
+        </activity>
     </application>
     <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="22" />
     <uses-permission android:name="com.nraboy.testproject.permission.JPUSH_MESSAGE" />

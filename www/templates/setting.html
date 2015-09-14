@@ -12,5 +12,9 @@
         <button onclick="window.plugins.socialsharing.share('Message only')">send to your friend</button>
         <button onclick="window.plugins.socialsharing.share('Here is image', 'Your PDF', 'www/img/images.png')">send a image to your friend</button>
         <button onclick="window.plugins.socialsharing.share('Here is a url', 'the url', null,'www.baidu.com')">baidu</button>
+        <ion-item>
+            {{message}}
+            <a ng-click="send()"><i class="icon ion-share"    style="font-size:20px;"></i>  </a>
+        </ion-item>
     </ion-content>
 </ion-view>

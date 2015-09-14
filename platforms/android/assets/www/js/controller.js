@@ -6,7 +6,7 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
                                 $cordovaCamera,$ionicLoading,$cordovaNetwork,$rootScope,$timeout,
                                 searchHistory,$ionicActionSheet,customFunction){
 
-        $scope.$on('$cordovaNetwork:offline', function(){customFunction.myNotice('no network connect');});
+        $rootScope.$on('$cordovaNetwork:offline', function(){customFunction.myNotice('no network connect');});
 
         $rootScope.$on('$cordovaNetwork:online', function(){customFunction.myNotice('network connectted');});
 
@@ -322,7 +322,11 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
         //
         //});
     })
-.controller('setCtrl',function(){
+.controller('setCtrl',function($scope,customFunction){
+        $scope.message = 'test';
+        $scope.send = function(){
+            customFunction.sendGossip('test');
+        };
 })
 .directive('goEdit',function(){
        return{

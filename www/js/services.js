@@ -154,15 +154,45 @@ angular.module('myApp.services',['firebase'])
     };
     return searchHistory;
 })
-.factory('customFunction',function($ionicLoading,$timeout){
+.factory('customFunction',function($ionicLoading,$timeout,$ionicActionSheet){
     var customFunct;
     customFunct = {
-        myNotice : function(msg){
+        myNotice : function(msg,timeout){
             $ionicLoading.show({template: msg});
             $timeout(function(){
                 $ionicLoading.hide();
-            },1000);
+            },timeout || 1000);
             return false;
+        },
+        sendGossip : function(gossip){
+            if(!(navigator && navigator.connection && navigator.connection.type!=Connection.NONE)){
+                return this.myNotice('no network connect...');
+            }
+            $ionicActionSheet.show({
+                titleText : 'Share',
+                cancelText: 'Cancel',
+                buttons   : [{text: 'share to friend circle'},{text: 'share to wechat friend'}],
+                //cancel    : function(){Yibeiban.myLogger('CANCELLED');},
+                buttonClicked : function(index){
+                    customFunct.myNotice('Loading...',20000);
+                    Wechat.share({
+                        message: {
+                            description: index === 0 ? 'anonymous information?click to get detail...' : '',
+                            title: gossip,
+                            thumb:'',
+                            media: {
+                                type: 7,
+                                webpageUrl: "http://www.baidu.com"
+                            }
+                        }, scene: index ===0 ? 1:0
+                    }, function(){
+                        $ionicLoading.hide();
+                    }, function(reason) {
+                        $ionicLoading.hide();
+                    });
+                    return true;
+                }
+            });
         }
     };
 

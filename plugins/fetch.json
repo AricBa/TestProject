@@ -87,5 +87,16 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "xu.li.cordova.wechat": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/xu-li/cordova-plugin-wechat",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {
+            "WECHATAPPID": "wx2ba9fd24763f88fc"
+        }
     }
 }

@@ -159,6 +159,13 @@ module.exports = [
         "clobbers": [
             "cordova.getAppVersion"
         ]
+    },
+    {
+        "file": "plugins/xu.li.cordova.wechat/www/wechat.js",
+        "id": "xu.li.cordova.wechat.Wechat",
+        "clobbers": [
+            "Wechat"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -174,7 +181,8 @@ module.exports.metadata =
     "org.apache.cordova.device": "0.3.0",
     "org.apache.cordova.inappbrowser": "0.6.0",
     "org.apache.cordova.network-information": "0.2.15",
-    "uk.co.whiteoctober.cordova.appversion": "0.1.7"
+    "uk.co.whiteoctober.cordova.appversion": "0.1.7",
+    "xu.li.cordova.wechat": "0.8.1"
 }
 // BOTTOM OF METADATA
 });

@@ -51,6 +51,14 @@
                         {
                             "xml": "<feature name=\"AppVersion\"><param name=\"android-package\" value=\"uk.co.whiteoctober.cordova.AppVersion\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Wechat\"><param name=\"android-package\" value=\"xu.li.cordova.wechat.Wechat\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"WECHATAPPID\" value=\"wx2ba9fd24763f88fc\" />",
+                            "count": 1
                         }
                     ]
                 }
@@ -143,6 +151,14 @@
                         {
                             "xml": "<meta-data android:name=\"JPUSH_APPKEY\" android:value=\"77458627944817d38036f4d2\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<activity android:exported=\"true\" android:label=\"@string/launcher_name\" android:name=\".wxapi.WXEntryActivity\"><intent-filter><action android:name=\"android.intent.action.VIEW\" /><category android:name=\"android.intent.category.DEFAULT\" /><data android:scheme=\"wx2ba9fd24763f88fc\" /></intent-filter></activity>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<activity android:exported=\"true\" android:label=\"@string/launcher_name\" android:launchMode=\"singleTop\" android:name=\".wxapi.WXPayEntryActivity\"><intent-filter><action android:name=\"android.intent.action.VIEW\" /><category android:name=\"android.intent.category.DEFAULT\" /><data android:scheme=\"wx2ba9fd24763f88fc\" /></intent-filter></activity>",
+                            "count": 1
                         }
                     ],
                     "/*": [
@@ -203,6 +219,10 @@
             "PACKAGE_NAME": "com.nraboy.testproject"
         },
         "uk.co.whiteoctober.cordova.appversion": {
+            "PACKAGE_NAME": "com.nraboy.testproject"
+        },
+        "xu.li.cordova.wechat": {
+            "WECHATAPPID": "wx2ba9fd24763f88fc",
             "PACKAGE_NAME": "com.nraboy.testproject"
         }
     },
