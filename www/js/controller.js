@@ -329,6 +329,55 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
             customFunction.sendGossip();
         };
 })
+.controller('loginCtrl',function(Auth,$ionicLoading,$scope,$state){
+        $scope.user ={};
+        $scope.goSignUp = function(){
+            $state.go('register',{reload:true});
+        };
+
+        $scope.goSignIn = function(){
+            $state.go('login',{reload:true});
+        };
+
+        $scope.tryLogin = function(){
+            $ionicLoading.show({
+                template: '<div ><ion-spinner icon="lines"></ion-spinner></div>' + 'Loading...'
+            });
+            Auth.login($scope.user).then(function(user){
+                $ionicLoading.hide();
+
+                $state.go('tabs.home',{reload:true});
+                var uid = user.uid;
+            }).catch(function(err){
+                $scope.error = err.toString();
+                $ionicLoading.hide();
+            });
+        };
+
+        $scope.createAccount = function(){
+            Auth.register($scope.user).then(function(user){
+                return Auth.login($scope.user).then(function(){
+                    $scope.user.uid = user.uid;
+                    return Auth.createProfile($scope.user);
+                }).then(function(){
+                    $scope.tryLogin();
+                });
+            }).catch(function(err){
+                $scope.error = err.toString();
+            })
+        };
+    })
+.controller('logoutCtrl',function($scope,$ionicActionSheet,Auth){
+    $scope.tryLogout = function(){
+        $ionicActionSheet.show({
+            destructiveText: 'Logout'+' <i class="icon ion-log-out">',
+            cancelText: 'Cancel',
+            destructiveButtonClicked: function () {
+                Auth.logout();
+            }
+        })
+    }
+    })
 .directive('goEdit',function(){
        return{
            restrict: 'E',

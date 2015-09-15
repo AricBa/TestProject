@@ -199,16 +199,15 @@ angular.module('myApp.services',['firebase'])
     return customFunct;
 
 })
-.factory('Auth',function(FIREBASE_URL,$firebaseAuth,$q,$firebaseObject){
+.factory('Auth',function(FIREBASE_URL,$firebaseAuth,$rootScope,$location){
         var ref = new Firebase(FIREBASE_URL);
         var authObj = $firebaseAuth(ref);
 
         var Auth = {
             register: function(user){
-                return authObj.$createUser(user).then(function(userData){
-                    console.log("Successfully created user account with uid:", userData.uid);
-                }).catch(function(error){
-                    console.log("Error creating user:", error);
+                return authObj.$createUser({
+                    email: user.email,
+                    password: user.password
                 });
             },
             createProfile: function(user){
@@ -221,22 +220,22 @@ angular.module('myApp.services',['firebase'])
                 return authObj.$authWithPassword({
                     email    : user.email,
                     password : user.password
-                }).then(function(authData) {
-                    console.log("Authenticated successfully with payload:", authData);
-                }).catch(function(error){
-                    console.log("Login Failed!", error);
                 });
             },
             logout: function(){
                 return authObj.$unauth();
             },
-            resolveUser: function(){
-
-            },
             signedIn: function(){
-                return !!Auth.user.provider ;
-            },
-            user:{}
+                return authObj.$onAuth(function(data){
+                    if(data){
+                        $rootScope.authData = data;
+                        console.log(data);
+                    }else{
+                        console.log("Logged out");
+                        $location.path('/login');
+                    }
+                });
+            }
         };
 
         return Auth;

@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.filters','firebase','ionic-datepicker','LocalStorageModule','ngCordova.plugins.camera','ngCordova'])
 
-    .run(function ($ionicPlatform, $rootScope,$ionicPopup,$state,customFunction) {
+    .run(function ($ionicPlatform, $rootScope,$ionicPopup,$state,Auth, $location) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -66,6 +66,8 @@ angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.f
             }
         };
         document.addEventListener("jpush.openNotification", onOpenNotification, false);
+
+        Auth.signedIn();
     })
     .constant('FIREBASE_URL', 'https://tionic.firebaseio.com/')
     .config(function(localStorageServiceProvider){
@@ -75,89 +77,89 @@ angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.f
     })
     .config(function ($urlRouterProvider, $stateProvider) {
         $stateProvider
-            .state('login',{
-                url:"/login",
-                templateUrl: "templates/login.html",
-                controller : 'loginCtrl'
-            })
-            .state('register',{
-                url:"/register",
-                templateUrl: "templates/register.html",
-                controller : 'registerCtrl'
-            })
-            .state('tabs', {
-                url: '/tabs',
-                templateUrl: 'templates/tabs.html',
-                abstract: true
-            })
-            .state('tabs.home', {
-                url: '/home',
-                views: {
-                    'user': {
-                        templateUrl: 'templates/home.html',
-                        controller: 'homeCtrl'
-                    }
+        .state('login',{
+            url:"/login",
+            templateUrl: "templates/login.html",
+            controller : 'loginCtrl'
+        })
+        .state('register',{
+            url:"/register",
+            templateUrl: "templates/register.html",
+            controller : 'loginCtrl'
+        })
+        .state('tabs', {
+            url: '/tabs',
+            templateUrl: 'templates/tabs.html',
+            abstract: true
+        })
+        .state('tabs.home', {
+            url: '/home',
+            views: {
+                'user': {
+                    templateUrl: 'templates/home.html',
+                    controller: 'homeCtrl'
                 }
-            })
-            .state('tabs.detail', {
-                cache:false,
-                url: '/user/:key',
-                views: {
-                    'user':{
-                        templateUrl: 'templates/detail.html',
-                        controller: 'detailCtrl'
-                    }
-                },
-                resolve: {
-                    searchKey: function ($stateParams) {
-                        return {key: $stateParams.key};
-                    }
+            }
+        })
+        .state('tabs.detail', {
+            cache:false,
+            url: '/user/:key',
+            views: {
+                'user':{
+                    templateUrl: 'templates/detail.html',
+                    controller: 'detailCtrl'
                 }
-            })
-            .state('tabs.userEdit', {
-                url: '/userEdit/:key?index',
-                views: {
-                    'user': {
-                        templateUrl: 'templates/edit.html',
-                        controller: 'editCtrl'
-                    }
-                },
-                resolve: {
-                    searchKey: function ($stateParams) {
-                        return {
-                            key: $stateParams.key,
-                            index: $stateParams.index
-                        };
-                    }
+            },
+            resolve: {
+                searchKey: function ($stateParams) {
+                    return {key: $stateParams.key};
                 }
-            })
-            .state('tabs.about', {
-                url: '/about',
-                views: {
-                    'about': {
-                        templateUrl: 'templates/about.html',
-                        controller:'aboutCtrl'
-                    }
+            }
+        })
+        .state('tabs.userEdit', {
+            url: '/userEdit/:key?index',
+            views: {
+                'user': {
+                    templateUrl: 'templates/edit.html',
+                    controller: 'editCtrl'
                 }
-            })
-            .state('tabs.settings', {
-                url: '/setting',
-                views: {
-                    'setting': {
-                        templateUrl: 'templates/setting.html',
-                        controller:'setCtrl'
-                    }
+            },
+            resolve: {
+                searchKey: function ($stateParams) {
+                    return {
+                        key: $stateParams.key,
+                        index: $stateParams.index
+                    };
                 }
-            })
-            .state('tabs.addPerson', {
-                url: '/user/addPerson',
-                views:{
-                    'user':{
-                        templateUrl: 'templates/addPerson.html',
-                        controller: 'addPersonCtrl'
-                    }
+            }
+        })
+        .state('tabs.about', {
+            url: '/about',
+            views: {
+                'about': {
+                    templateUrl: 'templates/about.html',
+                    controller:'aboutCtrl'
                 }
-            });
-        $urlRouterProvider.otherwise('/tabs/home');
+            }
+        })
+        .state('tabs.settings', {
+            url: '/setting',
+            views: {
+                'setting': {
+                    templateUrl: 'templates/setting.html',
+                    controller:'setCtrl'
+                }
+            }
+        })
+        .state('tabs.addPerson', {
+            url: '/user/addPerson',
+            views:{
+                'user':{
+                    templateUrl: 'templates/addPerson.html',
+                    controller: 'addPersonCtrl'
+                }
+            }
+        });
+        $urlRouterProvider.otherwise('/login');
     });
 
