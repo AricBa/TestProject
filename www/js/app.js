@@ -3,9 +3,10 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.filters','firebase','ionic-datepicker','LocalStorageModule','ngCordova.plugins.camera','ngCordova'])
+angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.filters',
+    'firebase','ionic-datepicker','LocalStorageModule','ngCordova'])
 
-    .run(function ($ionicPlatform, $rootScope,$ionicPopup,$state,Auth, $location) {
+    .run(function ($ionicPlatform, $rootScope,$ionicPopup,$state,Auth,$cordovaContacts) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -68,6 +69,7 @@ angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.f
         document.addEventListener("jpush.openNotification", onOpenNotification, false);
 
         Auth.signedIn();
+
     })
     .constant('FIREBASE_URL', 'https://tionic.firebaseio.com/')
     .config(function(localStorageServiceProvider){

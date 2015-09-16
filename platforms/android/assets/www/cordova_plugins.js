@@ -166,6 +166,13 @@ module.exports = [
         "clobbers": [
             "Wechat"
         ]
+    },
+    {
+        "file": "plugins/com.verso.cordova.clipboard/www/clipboard.js",
+        "id": "com.verso.cordova.clipboard.Clipboard",
+        "clobbers": [
+            "cordova.plugins.clipboard"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -182,7 +189,8 @@ module.exports.metadata =
     "org.apache.cordova.inappbrowser": "0.6.0",
     "org.apache.cordova.network-information": "0.2.15",
     "uk.co.whiteoctober.cordova.appversion": "0.1.7",
-    "xu.li.cordova.wechat": "0.8.1"
+    "xu.li.cordova.wechat": "0.8.1",
+    "com.verso.cordova.clipboard": "0.1.0"
 }
 // BOTTOM OF METADATA
 });

@@ -98,5 +98,14 @@
         "variables": {
             "WECHATAPPID": "wx2ba9fd24763f88fc"
         }
+    },
+    "com.verso.cordova.clipboard": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/VersoSolutions/CordovaClipboard.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

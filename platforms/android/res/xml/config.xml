@@ -41,6 +41,9 @@
         <param name="android-package" value="xu.li.cordova.wechat.Wechat" />
     </feature>
     <preference name="WECHATAPPID" value="wx2ba9fd24763f88fc" />
+    <feature name="Clipboard">
+        <param name="android-package" value="com.verso.cordova.clipboard.Clipboard" />
+    </feature>
     <allow-intent href="market:*" />
     <name>TestProject</name>
     <description>

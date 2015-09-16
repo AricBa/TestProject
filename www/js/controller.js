@@ -4,7 +4,56 @@
 angular.module('myApp.controllers',['firebase','ionic-datepicker','internationalPhoneNumber'])
 .controller('homeCtrl',function($scope, peopleService,FIREBASE_URL,$ionicSideMenuDelegate,
                                 $cordovaCamera,$ionicLoading,$cordovaNetwork,$rootScope,$timeout,
-                                searchHistory,$ionicActionSheet,customFunction){
+                                searchHistory,$ionicActionSheet,customFunction,$state,$ionicPopup,$cordovaContacts,
+                                $cordovaClipboard){
+        $scope.call = function(num){
+            var myPopup = $ionicPopup.show({
+                scope: $scope,
+                buttons:[
+                    {
+                        text: 'Call',
+                        type: 'button-positive',
+                        onTap: function(e){
+                            document.location.href = "tel:" + num;
+                        }
+                    },
+                    {
+                        text: 'Add to address book',
+                        type: 'button-positive',
+                        onTap: function(e){
+                            var phoneNumbers = [];
+                            phoneNumbers[0] = new ContactField('', num, true);
+                            $cordovaContacts.save({"phoneNumbers": phoneNumbers}).then(function(result) {
+                                alert(JSON.stringify(result));
+                            }, function(error) {
+                                alert("Error:" + error);
+                            });
+                        }
+                    },
+                    {
+                        text: 'Copy',
+                        type: 'button-positive',
+                        onTap: function(e){
+                            $cordovaClipboard.copy(num).then(function(){},function(){});
+                        }
+                    },
+                    {
+                        text:'Cancel'
+                    }
+                ]
+            });
+            myPopup.then(function(res) {
+                console.log('Tapped!', res);
+            });
+            $timeout(function() {
+                myPopup.close(); //close the popup after 3 seconds for some reason
+            }, 5000);
+        };
+
+        $scope.refresh = function(){
+            $state.reload();
+            $scope.$broadcast('scroll.refreshComplete');
+        };
 
         $rootScope.$on('$cordovaNetwork:offline', function(){customFunction.myNotice('no network connect');});
 
@@ -364,7 +413,7 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
                 });
             }).catch(function(err){
                 $scope.error = err.toString();
-            })
+            });
         };
     })
 .controller('logoutCtrl',function($scope,$ionicActionSheet,Auth){
@@ -375,8 +424,8 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
             destructiveButtonClicked: function () {
                 Auth.logout();
             }
-        })
-    }
+        });
+    };
     })
 .directive('goEdit',function(){
        return{

@@ -198,7 +198,48 @@ angular.module('myApp.services',['firebase'])
 
     return customFunct;
 
-});
+})
+.factory('Auth',function(FIREBASE_URL,$firebaseAuth,$rootScope,$location){
+        var ref = new Firebase(FIREBASE_URL);
+        var authObj = $firebaseAuth(ref);
+
+        var Auth = {
+            register: function(user){
+                return authObj.$createUser({
+                    email: user.email,
+                    password: user.password
+                });
+            },
+            createProfile: function(user){
+                return ref.child("users").child(user.uid).set({
+                    username: user.username,
+                    useremail: user.email
+                });
+            },
+            login: function(user){
+                return authObj.$authWithPassword({
+                    email    : user.email,
+                    password : user.password
+                });
+            },
+            logout: function(){
+                return authObj.$unauth();
+            },
+            signedIn: function(){
+                return authObj.$onAuth(function(data){
+                    if(data){
+                        $rootScope.authData = data;
+                        console.log(data);
+                    }else{
+                        console.log("Logged out");
+                        $location.path('/login');
+                    }
+                });
+            }
+        };
+
+        return Auth;
+    });
 //.factory('Camera',['$q',function($q){
 //        return {
 //            getPicture: function(options){
