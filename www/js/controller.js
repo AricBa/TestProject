@@ -5,7 +5,50 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
 .controller('homeCtrl',function($scope, peopleService,FIREBASE_URL,$ionicSideMenuDelegate,
                                 $cordovaCamera,$ionicLoading,$cordovaNetwork,$rootScope,$timeout,
                                 searchHistory,$ionicActionSheet,customFunction,$state,$ionicPopup,$cordovaContacts,
-                                $cordovaClipboard){
+                                $cordovaClipboard,$cordovaSQLite){
+        db = $cordovaSQLite.openDB({ name: 'app.db' });
+        $cordovaSQLite.execute(db,"CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
+
+        $scope.s ='';
+        $scope.d ='';
+        $scope.insert = function(first, last) {
+            alert(first + last);
+            var query = "INSERT INTO people (firstname, lastname) VALUES (?,?)";
+            $cordovaSQLite.execute(db,query,[first,last]).then(function(result) {
+                alert("INSERT ID -> " + result.insertId);
+            }, function(error) {
+                alert(error);
+            });
+        };
+
+        $scope.select = function(last) {
+            alert(last);
+            var query = "SELECT firstname, lastname FROM people WHERE id = ?";
+            $cordovaSQLite.execute(db,query,[last]).then(function(result) {
+                if(result.rows.length > 0) {
+                    alert("SELECTED -> " + result.rows.item(0).firstname + " " + result.rows.item(0).lastname);
+                    alert("SELECTED -> " + result.rows.item(0).id);
+                } else {
+                    alert("NO ROWS EXIST");
+                }
+            }, function(error) {
+                console.error(error);
+            });
+        };
+
+        $scope.delete = function(last) {
+            var query = "DELETE FROM people WHERE id = ?";
+            $cordovaSQLite.execute(db,query,[last]).then(function(result) {
+                if(result.rows.length > 0) {
+                    alert("SELECTED -> " + result.rows.item(0).firstname + " " + result.rows.item(0).lastname);
+                } else {
+                    alert("NO ROWS EXIST");
+                }
+            }, function(error) {
+                alert(error);
+            });
+        };
+
         $scope.call = function(num){
             var myPopup = $ionicPopup.show({
                 scope: $scope,

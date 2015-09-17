@@ -66,6 +66,13 @@
             <ion-item>
                 <img id="myImage" src=""/><input type="submit" value="Submit" ng-click="showActionsheet()"/>
             </ion-item>
+            <ion-item>
+                <input ng-model= "d" placeholder="delete"/><br/>
+                <input ng-model= "s" placeholder="selcet"/><br/>
+                <button type = "button" ng-click="insert('ba','aric')"> insert </button>
+                <button type = "button" ng-click="select(s)"> select </button>
+                <button type = "button" ng-click="delete(d)"> delete </button>
+            </ion-item>
         </ion-list>
     </ion-content>
 </ion-view>
