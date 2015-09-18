@@ -15,6 +15,30 @@
         <ion-item>
             <a ng-click="send()"><i class="icon ion-share"    style="font-size:20px;"></i>Share</a>
         </ion-item>
+        <ion-item>
+           <div> {{space}}</div>
+            <div>{{data}}</div>
+            <div>{{storage}}</div>
+            <div> <button ng-click="createNewFile()">Create New File</button></div>
+        </ion-item>
+        <ion-item>
+            <div>{{downloadProgress}}</div>
+            <div
+                    round-progress
+                    max="100"
+                    current="downloadProgress"
+                    color="#45ccce"
+                    bgcolor="#eaeaea"
+                    radius="25"
+                    stroke="2"
+                    semi="false"
+                    rounded="true"
+                    clockwise="true"
+                    responsive="false"
+                    duration="800"
+                    animation="easeInOutQuart"></div>
+            <div><button type = "button" ng-click= "download()">Download File</button></div>
+        </ion-item>
         <ion-item class="item ">
             <button class="button button-assertive button-block" ng-click="tryLogout()" ng-controller="logoutCtrl">
                 logout

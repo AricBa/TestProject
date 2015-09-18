@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.filters',
-    'firebase','ionic-datepicker','LocalStorageModule','ngCordova'])
+    'firebase','ionic-datepicker','LocalStorageModule','ngCordova','angular-svg-round-progress'])
 
-    .run(function ($ionicPlatform, $rootScope,$ionicPopup,$state,Auth,$cordovaContacts) {
+    .run(function ($ionicPlatform, $rootScope,$ionicPopup,$state,Auth) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)

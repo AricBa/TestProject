@@ -416,13 +416,50 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
         //
         //});
     })
-.controller('setCtrl',function($scope,customFunction){
+.controller('setCtrl',function($scope,customFunction,$cordovaFile,$cordovaFileTransfer,$timeout){
         $scope.send = function(){
             customFunction.sendGossip();
+        };
+
+        $scope.data = cordova.file.dataDirectory;
+        $scope.storage = cordova.file.applicationStorageDirectory;
+        $cordovaFile.getFreeDiskSpace().then(function(success){
+            $scope.space = success;
+        },function(error){
+            alert(error);
+        });
+
+        $scope.createNewFile = function(){
+            $cordovaFile.createFile(cordova.file.dataDirectory, "new_file.txt", true)
+                .then(function (success) {
+                    alert("success");
+                }, function (error) {
+                    // error
+                });
+        };
+
+        $scope.download = function(){
+            var url = encodeURI("http://cdn.wall-pix.net/albums/art-space/00030109.jpg");
+            var targetPath = cordova.file.dataDirectory + "testImag.png";
+            var trustHosts = true;
+            var options = {};
+
+            $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
+                .then(function(result) {
+                    alert("Success!");
+                }, function(err) {
+                    alert("Error");
+                }, function (progress) {
+                    //$timeout(function () {
+                        $scope.downloadProgress = (progress.loaded / progress.total) * 100;
+                    //});
+                });
         };
 })
 .controller('loginCtrl',function(Auth,$ionicLoading,$scope,$state){
         $scope.user ={};
+        $scope.user.email = "3@3.com";
+        $scope.user.password = "3";
         $scope.goSignUp = function(){
             $state.go('register',{reload:true});
         };
