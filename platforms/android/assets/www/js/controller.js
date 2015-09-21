@@ -100,7 +100,10 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
 
         $rootScope.$on('$cordovaNetwork:offline', function(){customFunction.myNotice('no network connect');});
 
-        $rootScope.$on('$cordovaNetwork:online', function(){customFunction.myNotice('network connectted');});
+        $rootScope.$on('$cordovaNetwork:online', function(event,networkState){
+            customFunction.myNotice('network connectted');
+            //alert(networkState);
+        });
 
         $scope.submit = function(){
             window.plugins.jPushPlugin.setAlias(document.getElementById("id").value);
@@ -437,23 +440,38 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
                     // error
                 });
         };
-
+        $scope.downloadProgress = 0;
+        $scope.down = false ;
         $scope.download = function(){
-            var url = encodeURI("http://cdn.wall-pix.net/albums/art-space/00030109.jpg");
-            var targetPath = cordova.file.dataDirectory + "testImag.png";
-            var trustHosts = true;
-            var options = {};
+            if(!(navigator && navigator.connection && navigator.connection.type!=Connection.NONE)){
+                customFunction.myNotice('no network connect');
+                //$ionicLoading.show({template: 'no network connect'});
+                //$timeout(function(){
+                //    $ionicLoading.hide();
+                //},500);
+                //return false;
+            }else{
+                $scope.down = true;
+                var url = encodeURI("http://cdn.wall-pix.net/albums/art-space/00030109.jpg");
+                var targetPath = cordova.file.externalApplicationStorageDirectory + "testImages.png";
+                //var targetPath = cordova.file.externalApplicationStorageDirectory + "testImag.png";
 
-            $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
-                .then(function(result) {
-                    alert("Success!");
-                }, function(err) {
-                    alert("Error");
-                }, function (progress) {
-                    //$timeout(function () {
+                var trustHosts = true;
+                var options = {};
+
+                $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
+                    .then(function(result) {
+                        alert(result.toURL());
+                        $scope.down = false;
+                    }, function(err) {
+                        alert("Error");
+                    }, function (progress) {
+                        //$timeout(function () {
                         $scope.downloadProgress = (progress.loaded / progress.total) * 100;
-                    //});
-                });
+                        //});
+                    });
+            }
+
         };
 })
 .controller('loginCtrl',function(Auth,$ionicLoading,$scope,$state){

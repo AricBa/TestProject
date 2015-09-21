@@ -22,7 +22,14 @@
             <div> <button ng-click="createNewFile()">Create New File</button></div>
         </ion-item>
         <ion-item>
-            <div>{{downloadProgress}}</div>
+            <div style ="height: 4px; width: 100% ; border:1px solid  #000;" ng-show="down">
+                <div style="height: 2px; width: {{downloadProgress}}%; transition: width 0.1s; background: blue;"></div>
+                    <div>
+                        {{downloadProgress | number : 1}}%
+                    </div>
+            </div>
+        </ion-item>
+        <ion-item>
             <div
                     round-progress
                     max="100"
@@ -36,7 +43,8 @@
                     clockwise="true"
                     responsive="false"
                     duration="800"
-                    animation="easeInOutQuart"></div>
+                    animation="easeInOutQuart" ng-show="down"></div>
+            <div ng-show="down">{{downloadProgress | number : 1}}%</div>
             <div><button type = "button" ng-click= "download()">Download File</button></div>
         </ion-item>
         <ion-item class="item ">
