@@ -102,7 +102,7 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
 
         $rootScope.$on('$cordovaNetwork:online', function(event,networkState){
             customFunction.myNotice('network connectted');
-            //alert(networkState);
+            alert(networkState);
         });
 
         $scope.submit = function(){

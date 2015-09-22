@@ -2602,10 +2602,14 @@ body.grade-b, body.grade-c {
  * scroll view functionality.
  */
 .scroll {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  /*-webkit-user-select: none;*/
+  /*-moz-user-select: none;*/
+  /*-ms-user-select: none;*/
+  /*user-select: none;*/
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
   -webkit-touch-callout: none;
   -webkit-text-size-adjust: none;
   -moz-text-size-adjust: none;
