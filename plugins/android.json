@@ -75,6 +75,10 @@
                         {
                             "xml": "<feature name=\"FileTransfer\"><param name=\"android-package\" value=\"org.apache.cordova.filetransfer.FileTransfer\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Sms\"><param name=\"android-package\" value=\"com.cordova.plugins.sms.Sms\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -100,7 +104,7 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
-                            "count": 1
+                            "count": 2
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
@@ -132,6 +136,14 @@
                         },
                         {
                             "xml": "<permission android:name=\"com.nraboy.testproject.permission.JPUSH_MESSAGE\" android:protectionLevel=\"signature\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.SEND_SMS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-feature android:name=\"android.hardware.telephony\" android:required=\"false\" />",
                             "count": 1
                         }
                     ],
@@ -251,6 +263,9 @@
             "PACKAGE_NAME": "com.nraboy.testproject"
         },
         "org.apache.cordova.file-transfer": {
+            "PACKAGE_NAME": "com.nraboy.testproject"
+        },
+        "com.cordova.plugins.sms": {
             "PACKAGE_NAME": "com.nraboy.testproject"
         }
     },

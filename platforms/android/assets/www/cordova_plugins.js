@@ -340,6 +340,13 @@ module.exports = [
         "clobbers": [
             "window.FileTransfer"
         ]
+    },
+    {
+        "file": "plugins/com.cordova.plugins.sms/www/sms.js",
+        "id": "com.cordova.plugins.sms.Sms",
+        "clobbers": [
+            "window.sms"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -360,7 +367,8 @@ module.exports.metadata =
     "com.verso.cordova.clipboard": "0.1.0",
     "io.litehelpers.cordova.sqlite": "0.7.10",
     "org.apache.cordova.file": "1.3.3",
-    "org.apache.cordova.file-transfer": "0.5.0"
+    "org.apache.cordova.file-transfer": "0.5.0",
+    "com.cordova.plugins.sms": "0.1.6"
 }
 // BOTTOM OF METADATA
 });

@@ -61,28 +61,51 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
                         }
                     },
                     {
-                        text: 'Add to address book',
+                        text: 'sendMessage',
                         type: 'button-positive',
                         onTap: function(e){
-                            var phoneNumbers = [];
-                            phoneNumbers[0] = new ContactField('', num, true);
-                            $cordovaContacts.save({"phoneNumbers": phoneNumbers}).then(function(result) {
-                                alert(JSON.stringify(result));
-                            }, function(error) {
-                                alert("Error:" + error);
-                            });
+                            var number = num;
+                            var message = 'test';
+                            alert(number);
+                            alert(message);
+
+                            //CONFIGURATION
+                            var options = {
+                                replaceLineBreaks: false, // true to replace \n by a new line, false by default
+                                android: {
+                                    intent: 'INTENT'  // send SMS with the native android SMS messaging
+                                    //intent: '' // send SMS without open any other app
+                                }
+                            };
+
+                            var success = function () { alert('Message sent successfully'); };
+                            var error = function (e) { alert('Message Failed:' + e); };
+                            sms.send(number, message, options, success, error);
                         }
-                    },
-                    {
-                        text: 'Copy',
-                        type: 'button-positive',
-                        onTap: function(e){
-                            $cordovaClipboard.copy(num).then(function(){},function(){});
-                        }
-                    },
-                    {
-                        text:'Cancel'
                     }
+                    //{
+                    //    text: 'Add to address book',
+                    //    type: 'button-positive',
+                    //    onTap: function(e){
+                    //        var phoneNumbers = [];
+                    //        phoneNumbers[0] = new ContactField('', num, true);
+                    //        $cordovaContacts.save({"phoneNumbers": phoneNumbers}).then(function(result) {
+                    //            alert(JSON.stringify(result));
+                    //        }, function(error) {
+                    //            alert("Error:" + error);
+                    //        });
+                    //    }
+                    //},
+                    //{
+                    //    text: 'Copy',
+                    //    type: 'button-positive',
+                    //    onTap: function(e){
+                    //        $cordovaClipboard.copy(num).then(function(){},function(){});
+                    //    }
+                    //},
+                    //{
+                    //    text:'Cancel'
+                    //}
                 ]
             });
             myPopup.then(function(res) {
