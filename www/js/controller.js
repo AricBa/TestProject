@@ -82,7 +82,7 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
                             var error = function (e) { alert('Message Failed:' + e); };
                             sms.send(number, message, options, success, error);
                         }
-                    }
+                    },
                     //{
                     //    text: 'Add to address book',
                     //    type: 'button-positive',
@@ -96,16 +96,16 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
                     //        });
                     //    }
                     //},
-                    //{
-                    //    text: 'Copy',
-                    //    type: 'button-positive',
-                    //    onTap: function(e){
-                    //        $cordovaClipboard.copy(num).then(function(){},function(){});
-                    //    }
-                    //},
-                    //{
-                    //    text:'Cancel'
-                    //}
+                    {
+                        text: 'Copy',
+                        type: 'button-positive',
+                        onTap: function(e){
+                            $cordovaClipboard.copy(num).then(function(){},function(){});
+                        }
+                    },
+                    {
+                        text:'Cancel'
+                    }
                 ]
             });
             myPopup.then(function(res) {
