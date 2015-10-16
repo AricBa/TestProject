@@ -347,6 +347,13 @@ module.exports = [
         "clobbers": [
             "window.sms"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-file-opener2/www/plugins.FileOpener2.js",
+        "id": "cordova-plugin-file-opener2.FileOpener2",
+        "clobbers": [
+            "cordova.plugins.fileOpener2"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -368,7 +375,8 @@ module.exports.metadata =
     "io.litehelpers.cordova.sqlite": "0.7.10",
     "org.apache.cordova.file": "1.3.3",
     "org.apache.cordova.file-transfer": "0.5.0",
-    "com.cordova.plugins.sms": "0.1.6"
+    "com.cordova.plugins.sms": "0.1.6",
+    "cordova-plugin-file-opener2": "2.0.0"
 }
 // BOTTOM OF METADATA
 });

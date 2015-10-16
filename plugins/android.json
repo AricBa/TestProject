@@ -79,6 +79,10 @@
                         {
                             "xml": "<feature name=\"Sms\"><param name=\"android-package\" value=\"com.cordova.plugins.sms.Sms\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"FileOpener2\"><param name=\"android-package\" value=\"io.github.pwlin.cordova.plugins.fileopener2.FileOpener2\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -209,6 +213,10 @@
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
+                            "count": 1
                         }
                     ]
                 }
@@ -266,6 +274,9 @@
             "PACKAGE_NAME": "com.nraboy.testproject"
         },
         "com.cordova.plugins.sms": {
+            "PACKAGE_NAME": "com.nraboy.testproject"
+        },
+        "cordova-plugin-file-opener2": {
             "PACKAGE_NAME": "com.nraboy.testproject"
         }
     },

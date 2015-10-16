@@ -5,10 +5,10 @@
         </div>
     </ion-footer-bar>
     <ion-content padding="true">
-        <div style="text-align:center"><img src="img/ionic.png" class="ionic-logo" ></div><br><br>
-        <ion-item ng-click = "getAppInfo()">
-           App version :
-            <p>{{version}}</p>
+        <div style="text-align:center"><img src="img/ionic.png" class="ionic-logo" ></div>
+        <div>{{currentVersion}}</div><br><br>
+        <ion-item ng-click = "updateApp()">
+           check version update
         </ion-item>
         <button onclick="window.plugins.socialsharing.share('Message only')">send to your friend</button>
         <button onclick="window.plugins.socialsharing.share('Here is image', 'Your PDF', 'www/img/images.png')">send a image to your friend</button>

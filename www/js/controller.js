@@ -442,7 +442,7 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
         //
         //});
     })
-.controller('setCtrl',function($scope,customFunction,$cordovaFile,$cordovaFileTransfer,$http){
+.controller('setCtrl',function($scope,customFunction,$cordovaFile,$cordovaFileTransfer,versionUpdate){
         $scope.send = function(){
             customFunction.sendGossip();
         };
@@ -497,22 +497,8 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
 
         };
 
-        $scope.getAppInfo = function()
-        {
-            $http({
-                method: 'POST',
-                url:'http://www.pgyer.com/apiv1/app/getAppKeyByShortcut ',
-                data: $.param({
-                    shortcut: 'MRKK',
-                    "_api_key": "3e82e9b1d0472abd52e0b292b5ff02cd"
-                }),
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-            }).success(function(data,status){
-                $scope.appKey = data.data.appKey;
-
-            }).error(function(data,status){
-
-            });
+        $scope.updateApp = function(){
+            versionUpdate.checkUpdate();
         };
 })
 .controller('loginCtrl',function(Auth,$ionicLoading,$scope,$state){

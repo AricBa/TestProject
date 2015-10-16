@@ -6,7 +6,7 @@
 angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.filters',
     'firebase','ionic-datepicker','LocalStorageModule','ngCordova','angular-svg-round-progress'])
 
-    .run(function ($ionicPlatform, $rootScope,$ionicPopup,$state,Auth) {
+    .run(function ($ionicPlatform, $rootScope,$ionicPopup,$state,Auth,versionUpdate) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -44,7 +44,7 @@ angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.f
             //alert(device.uuid);
 
           cordova.getAppVersion.getVersionNumber().then(function (version) {
-              $rootScope.version = version;
+              $rootScope.currentVersion = version;
           });
             window.plugins.jPushPlugin.init();
             window.plugins.jPushPlugin.setDebugMode(true);
