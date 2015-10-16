@@ -41,7 +41,7 @@ angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.f
     }, 100);
 
         var onDeviceReady   = function(){
-            alert(device.uuid);
+            //alert(device.uuid);
 
           cordova.getAppVersion.getVersionNumber().then(function (version) {
               $rootScope.version = version;
