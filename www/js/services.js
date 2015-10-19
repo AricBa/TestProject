@@ -240,7 +240,8 @@ angular.module('myApp.services',['firebase'])
 
         return Auth;
     })
-.factory('versionUpdate',function($http,$rootScope,$ionicPopup,$ionicLoading,$cordovaFileTransfer,$cordovaFileOpener2,$timeout){
+.factory('versionUpdate',function($http,$rootScope,$ionicPopup,$ionicLoading,
+                                  $cordovaFileTransfer,$cordovaFileOpener2,$timeout,customFunction){
         var versionUpdate;
         versionUpdate = {
             checkUpdate: function(){
@@ -283,7 +284,7 @@ angular.module('myApp.services',['firebase'])
                                                    });
                                                $ionicLoading.hide();
                                            }, function (err) {
-                                               alert('load error');
+                                               customFunction.myNotice('load error');
                                            }, function (progress) {
                                                //progress
                                                $timeout(function () {
@@ -301,7 +302,7 @@ angular.module('myApp.services',['firebase'])
                                        }
                                    });
                                }else {
-                                   alert("The current version is latest");
+                                   customFunction.myNotice("The current version is latest");
                                }
                         }).error(function(data,status){
                         });
