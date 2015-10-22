@@ -70,6 +70,26 @@ angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.f
         };
         document.addEventListener("jpush.openNotification", onOpenNotification, false);
 
+
+          var onReceiveMessage = function(event){
+              try{
+                  var message;
+                  if(device.platform == "Android"){
+                      message = window.plugins.jPushPlugin.receiveMessage.message;
+                  }else{
+                      message   = event.content;
+                  }
+                  alert("get message"+message);
+
+              }
+              catch(exception){
+                  console.log("JPushPlugin:onReceiveMessage-->"+exception);
+              }
+          };
+        document.addEventListener("jpush.receiveMessage", onReceiveMessage, false);
+
+
+
         Auth.signedIn();
 
     })
