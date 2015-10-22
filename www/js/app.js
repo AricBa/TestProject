@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.filters',
-    'firebase','ionic-datepicker','LocalStorageModule','ngCordova','angular-svg-round-progress'])
+    'firebase','ionic-datepicker','LocalStorageModule','ngCordova','angular-svg-round-progress','restangular'])
 
-    .run(function ($ionicPlatform, $rootScope,$ionicPopup,$state,Auth,versionUpdate) {
+    .run(function ($ionicPlatform, $rootScope,$ionicPopup,$state,Auth,RestangularProvider) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -39,6 +39,11 @@ angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.f
             navigator.app.backHistory();
         }
     }, 100);
+
+      RestangularProvider.setBaseUrl('http://114.215.185.243:8080/data-app/rs/v1/');
+      RestangularProvider.setRestangularFields({
+          id: '_id'
+      });
 
         var onDeviceReady   = function(){
             //alert(device.uuid);
