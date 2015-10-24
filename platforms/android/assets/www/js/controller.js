@@ -501,7 +501,7 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
             versionUpdate.checkUpdate();
         };
 })
-.controller('loginCtrl',function(Auth,$ionicLoading,$scope,$state){
+.controller('loginCtrl',function(Auth,$ionicLoading,$scope,$state) {
         $scope.user ={};
         $scope.user.email = "3@3.com";
         $scope.user.password = "3";
@@ -518,6 +518,7 @@ angular.module('myApp.controllers',['firebase','ionic-datepicker','international
                 template: '<div ><ion-spinner icon="lines"></ion-spinner></div>' + 'Loading...'
             });
             Auth.login($scope.user).then(function(user){
+
                 $ionicLoading.hide();
 
                 $state.go('tabs.home',{reload:true});

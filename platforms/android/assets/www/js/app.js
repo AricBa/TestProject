@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.filters',
-    'firebase','ionic-datepicker','LocalStorageModule','ngCordova','angular-svg-round-progress'])
+    'firebase','ionic-datepicker','LocalStorageModule','ngCordova','angular-svg-round-progress','restangular'])
 
-    .run(function ($ionicPlatform, $rootScope,$ionicPopup,$state,Auth,versionUpdate) {
+    .run(function ($ionicPlatform, $rootScope,$ionicPopup,$state,Auth,getData,sqlService) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -39,6 +39,8 @@ angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.f
             navigator.app.backHistory();
         }
     }, 100);
+
+
 
         var onDeviceReady   = function(){
             //alert(device.uuid);
@@ -76,10 +78,19 @@ angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.f
                   var message;
                   if(device.platform == "Android"){
                       message = window.plugins.jPushPlugin.receiveMessage.message;
+
+                      getData.getData().then(function(data){
+                          alert("data"+data);
+
+                          alert(JSON.stringify(data));
+                          sqlService.insert(data);
+                      },function(error){
+                          alert("error " +err);
+                      });
                   }else{
                       message   = event.content;
                   }
-                  alert("get message"+message);
+                  alert("message:   "+message);
 
               }
               catch(exception){
@@ -99,7 +110,7 @@ angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.f
             .setPrefix('myApp')
             .setNotify(true, true);
     })
-    .config(function ($urlRouterProvider, $stateProvider) {
+    .config(function ($urlRouterProvider, $stateProvider,RestangularProvider) {
         $stateProvider
         .state('login',{
             url:"/login",
@@ -184,6 +195,12 @@ angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.f
                 }
             }
         });
+
+      RestangularProvider.setBaseUrl('http://114.215.185.243:8080/data-app/rs/v1/');
+      //RestangularProvider.setRestangularFields({
+      //    id: '_id'
+      //});
+
         $urlRouterProvider.otherwise('/login');
     });
 

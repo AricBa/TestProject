@@ -310,7 +310,67 @@ angular.module('myApp.services',['firebase'])
         };
 
         return versionUpdate;
-    });
+    })
+.factory('sqlService',function($cordovaSQLite){
+
+      //db = $cordovaSQLite.openDB({ name: 'app.db' });
+      //$cordovaSQLite.execute(db,"CREATE TABLE IF NOT EXISTS data (id integerd primary key, data text)");
+
+      var sqlService;
+      sqlService = {
+          insert : function(data) {
+              db = $cordovaSQLite.openDB({ name: 'app.db' });
+              $cordovaSQLite.execute(db,"CREATE TABLE IF NOT EXISTS data (id integerd primary key, data text)");
+
+              var query = "INSERT INTO people (data) VALUES (?)";
+              $cordovaSQLite.execute(db,query,[data]).then(function(result) {
+                  alert("INSERT ID -> " + result.insertId);
+              }, function(error) {
+                  alert("error"+error);
+              });
+          },
+
+          select : function(key) {
+              var query = "SELECT data FROM people WHERE id = ?";
+              $cordovaSQLite.execute(db,query,[key]).then(function(result) {
+                  if(result.rows.length > 0) {
+                      alert("SELECTED -> " + result.rows.item(0).data);
+                      alert("SELECTED -> " + result.rows.item(0).id);
+                  } else {
+                      alert("NO ROWS EXIST");
+                  }
+              }, function(error) {
+                  console.error(error);
+              });
+          },
+
+          delete : function(key) {
+              var query = "DELETE FROM people WHERE id = ?";
+              $cordovaSQLite.execute(db,query,[key]).then(function(result) {
+                  if(result.rows.length > 0) {
+                      alert("SELECTED -> " + result.rows.item(0).data );
+                  } else {
+                      alert("NO ROWS EXIST");
+                  }
+              }, function(error) {
+                  alert(error);
+              });
+          }
+      };
+      return  sqlService;
+  })
+.factory('getData',function(Restangular){
+      var getData;
+      getData = {
+          getData: function(){
+              return Restangular.all('sap/po/purchase_orders/4500017495/items/00010').customGET('',{},{token:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9' +
+              '.eyJjbXlHVUlEIjoiNDAyODhiODE0N2NkMTZjZTAxNDdjZDIzNmRmMjAwMDAiLCJjbXlOYW1lIjoiZGVsbCIsInVzZXJJZCI6MTAwMDAxLCJl' +
+              'bWFpbCI6InRvbnkuc2hhbmdAb3J5emFzb2Z0LmNvbSJ9.' +
+              'qF0vdhbA1pWriJQualvMgW-OHkrTwJ2SP5AJUctnH6k'});
+          }
+      };
+     return getData;
+});
 //.factory('Camera',['$q',function($q){
 //        return {
 //            getPicture: function(options){
