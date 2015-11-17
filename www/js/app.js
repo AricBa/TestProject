@@ -34,11 +34,11 @@ angular.module('myApp', ['ionic', 'myApp.controllers','myApp.services', 'myApp.f
                     }
                 });
             }
-        else
-        {
-            navigator.app.backHistory();
-        }
-    }, 100);
+            else
+            {
+                navigator.app.backHistory();
+            }
+        }, 100);
 
 
 
